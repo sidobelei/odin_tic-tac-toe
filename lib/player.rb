@@ -1,6 +1,13 @@
 class Player
     def initialize (piece)
         @piece = piece 
-        @placed_pieces = Array.new(8, nil)
+        @placed_pieces = []
+    end
+
+    def make_move
+        print "#{} your turn: "
+        placement = gets.chomp
+        @placed_pieces.push(placement)
+        return placement
     end
 end
