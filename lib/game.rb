@@ -16,7 +16,7 @@ class Game
 
     def initialize
         @game_over = false
-        @winner = "No One"
+        @winner = nil
     end
 
     def in_a_row?(placed_pieces, name)
@@ -47,6 +47,13 @@ class Game
     #take placed pieces from both player see if equals 9
     #if so game_over to true
 
+    def declare_winner
+        if winner
+            puts "#{winner} Wins!"
+        else
+            puts "It's a tie!"
+        end
+    end
     #declare winner function
     #print out winner 
 
