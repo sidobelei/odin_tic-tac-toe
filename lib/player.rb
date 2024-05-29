@@ -1,6 +1,7 @@
 class Player
-    attr_reader :piece
-    def initialize (piece)
+    attr_reader :name, :piece, :placed_pieces
+    def initialize (name, piece)
+        @name = name
         @piece = piece 
         @placed_pieces = []
     end
