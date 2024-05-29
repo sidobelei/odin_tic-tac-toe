@@ -6,8 +6,6 @@ class Board
             ["|  ", "4", "  |  ", "5", "  |  ", "6", "  |"], 
             ["|  ", "7", "  |  ", "8", "  |  ", "9", "  |"]
         ]
-        @game_over = false
-        @winner = "tie"
     end
 
     def place_here(coordinates, piece)
