@@ -1,32 +1,34 @@
-## main.rb
-# get names + chomp
-# randomizer for who goes first?
-# create player objects with name and starting order
-# while loop
-# check if player has enough pieces/ win
-# place piece down
-# continue or stop
-# print out who wins
+require_relative "lib/player"
+require_relative "lib/board"
+require_relative "lib/game"
 
+puts "Welcome to Tic Tac Toe!\n\n"
+print "Player One Name: "
+player_one_name = gets.chomp
+puts "\n" 
+print "Player Two Name: "
+player_two_name = gets.chomp
+puts "\n" 
 
-##Create a player class
-# player name
-# place an x/o at a certain position function gets
-# keeps track of where you've place pieces
-# number of starting pieces? 5 for player one 4 for player two
+player_one = Player.new(player_one_name, "X")
+player_two = Player.new(player_two_name, "O")
+board = Board.new
+game = Game.new
 
+board.display_board
+until game.game_over
+    player_one_move = player_one.make_move(board.board_display)
+    board.place_here(player_one_move, player_one.piece)
+    if game.in_a_row?(player_one.placed_pieces, player_one.name)
+        break
+    elsif game.full_board?(player_one.placed_pieces, player_two.placed_pieces)
+        break
+    end
+    player_two_move = player_two.make_move(board.board_display)
+    board.place_here(player_two_move, player_two.piece)
+    if game.in_a_row?(player_two.placed_pieces, player_two.name)
+        break
+    end 
+end
 
-##Board class?
-#should check wins here maybe?
-#check if position has been taken
-#Board Print out
-# _________________
-#|     |     |     |
-#|  0  |  1  |  2  |
-#|_____|_____|_____|
-#|     |     |     |
-#|  3  |  4  |  5  |
-#|_____|_____|_____|
-#|     |     |     |
-#|  6  |  7  |  8  |
-#|_____|_____|_____|
+game.declare_winner
