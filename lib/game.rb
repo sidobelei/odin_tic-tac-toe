@@ -11,6 +11,8 @@ class Game
         ["1", "5", "9"],
         ["3", "5", "7"]
     ]
+    
+    ALLOWED_PIECES = 9
 
     def initialize
         @game_over = false
@@ -35,6 +37,12 @@ class Game
     #else do nothing
     #return game_over
     
+    def full_board?(player_one_pieces, player_two_pieces)
+        if (player_one_pieces + player_two_pieces).length >= ALLOWED_PIECES
+            @game_over = true
+        end
+        return @game_over
+    end
     #board is full function
     #take placed pieces from both player see if equals 9
     #if so game_over to true
