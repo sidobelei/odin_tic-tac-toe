@@ -10,7 +10,7 @@ class Player
         valid_move = false
         coordinates = [nil, nil]
         while valid_move == false
-            print "#{} your turn: "
+            print "#{@name}, your turn: "
             placement = gets.chomp
             next unless ["1", "2", "3", "4", "5", "6", "7", "8", "9"].include?(placement)
             board.each_with_index do |row, index|
