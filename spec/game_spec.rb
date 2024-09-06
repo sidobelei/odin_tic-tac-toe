@@ -38,4 +38,32 @@ describe Game do
       end
     end
   end
+
+  describe '#full_board?' do
+    let(:p1_positions) { ['1', '2', '5', '6', '7'] }
+    let(:p1_positions_incomplete) { ['1', '2', '5', '6'] }
+    let(:p2_positions) { ['3', '4', '8', '9'] }
+    
+    context 'when the board is full' do
+      it 'game_over changes to true' do
+        expect { game.full_board?(p1_positions, p2_positions) }.to change {game.game_over}.from(false).to(true)
+      end
+
+      it 'returns game_over as true' do 
+        game_over = game.full_board?(p1_positions, p2_positions)
+        expect(game_over).to be(true)
+      end
+    end
+
+    context 'when the board is not full' do
+      it 'game_over stays false' do
+        expect { game.full_board?(p1_positions_incomplete, p2_positions) }.not_to change {game.game_over}
+      end
+
+      it 'returns game_over as false' do
+        game_over = game.full_board?(p1_positions_incomplete, p2_positions)
+        expect(game_over).to be(false)
+      end
+    end
+  end
 end
