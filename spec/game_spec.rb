@@ -3,6 +3,23 @@ require_relative '../lib/game'
 describe Game do
   subject(:game) {described_class.new}
 
+  describe '#initialize' do
+    context 'when a new Game object is created' do 
+      it 'creates a Player object for player_one' do
+        expect(game.player_one).to be_a(Player)
+      end
+
+      it 'creates a Player object for player_two' do
+        expect(game.player_two).to be_a(Player)
+      end
+
+      it 'a Board object is created' do
+        expect(game.board).to be_a(Board)
+      end
+
+    end
+  end
+
   describe '#in_a_row?' do
     let(:winning_combo) { ['1', '5', '9'] }
     let(:losing_combo) { ['3', '6', '8'] }
