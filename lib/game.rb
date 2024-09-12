@@ -15,8 +15,18 @@ class Game
     ALLOWED_PIECES = 9
 
     def initialize
+        puts "Welcome to Tic Tac Toe!\n\n"
+        print "Player One Name: "
+        player_one_name = gets.chomp
+        puts "\n" 
+        print "Player Two Name: "
+        player_two_name = gets.chomp
+        puts "\n" 
         @game_over = false
         @winner = nil
+        @player_one = Player.new(player_one_name, 'X')
+        @player_two = Player.new(player_two_name, 'O')
+        @board = Board.new
     end
 
     def in_a_row?(placed_pieces, name)
