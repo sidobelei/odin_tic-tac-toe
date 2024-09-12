@@ -1,3 +1,6 @@
+require_relative './board'
+require_relative './player'
+
 class Game 
     attr_reader :game_over, :winner
 
@@ -29,6 +32,25 @@ class Game
         @board = Board.new
     end
 
+    def play_game
+        @board.display_board
+        until game_over
+            player_one_move = @player_one.make_move(@board.board_display)
+            @board.place_here(player_one_move, @player_one.piece)
+            if in_a_row?(@player_one.placed_pieces, @player_one.name)
+                break
+            elsif full_board?(@player_one.placed_pieces, @player_two.placed_pieces)
+                break
+            end
+            player_two_move = @player_two.make_move(@board.board_display)
+            @board.place_here(player_two_move, @player_two.piece)
+            if in_a_row?(@player_two.placed_pieces, @player_two.name)
+                break
+            end 
+        end
+        declare_winner
+    end
+    
     def in_a_row?(placed_pieces, name)
         WINNING_COMBO.each do |element|
             if (element - placed_pieces).empty?
