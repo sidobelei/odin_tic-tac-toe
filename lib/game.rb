@@ -2,7 +2,7 @@ require_relative './board'
 require_relative './player'
 
 class Game 
-    attr_reader :game_over, :winner
+    attr_reader :game_over, :winner, :player_one, :player_two, :board
 
     WINNING_COMBO = [
         ["1", "2", "3"],
